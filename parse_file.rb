@@ -11,21 +11,36 @@ class CustomReceiver
     @text = ''
   end
 
-#  def begin_text_object(*args)
+  def begin_text_object(*args)
 #    puts "args.size:#{args.size}"
-#  end
+    puts "begin_text_object: #{args.first}"
+  end
+
+  def end_text_object(*args)
+    #puts "args.size:#{args.size}"
+    puts "end_text_object: #{args.first}"
+    #@text += "\n"
+  end
+
+  def set_text_matrix_and_text_line_matrix(*args)
+    puts "set_text_matrix_and_text_line_matrix: #{args.first}"
+  end
+
+  def set_spacing_next_line_show_text(*args)
+    puts "set_spacing_next_line_show_text: #{args.first}"
+  end
 
   def show_text_with_positioning(*args)
     #puts "show_text_with_positioning:"
     #puts "args.size:#{args.size}"
-    #puts "#{args.first}"
+    puts "show_text_with_positioning: #{args.first}"
 
     args.first.each do |i|
       if i.is_a?(String)
         @text += i
       end
     end
-    @text += "\n"
+    #@text += "\n"
 
   end
 
@@ -52,7 +67,7 @@ if ARGV.length >= 1
 #    end
   end
 
-#  puts "text: #{receiver.text}"
+  #puts "text: #{receiver.text}"
 
 end
 
