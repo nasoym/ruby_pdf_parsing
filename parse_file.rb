@@ -98,6 +98,12 @@ class CustomReceiver
 
 end
 
+class TextReceiver < PDF::Reader::PageTextReceiver  
+  def hi
+    puts "#{@characters}"
+  end
+end  
+
 if ARGV.length >= 1
   filename = ARGV[0]
   puts "opening file: #{filename}"
@@ -106,20 +112,33 @@ if ARGV.length >= 1
 
   puts "page_count:#{reader.page_count}"
 
-  page = reader.pages[2]
-  receiver = PDF::Reader::RegisterReceiver.new
+  if ARGV.length >= 2
+    pagenumber = ARGV[1].to_i
+  else
+    pagenumber = 0
+  end
+
+  page = reader.pages[pagenumber]
+  #receiver = PDF::Reader::RegisterReceiver.new
+  #receiver = PDF::Reader::PageTextReceiver.new
+  receiver = TextReceiver.new
   #receiver = CustomReceiver.new
 
   page.walk(receiver)
 
-  receiver.callbacks.each do |cb|
-    puts cb
-#    if cb[:name] == :show_text_with_positioning
-#      #puts cb[:args]
-#    end
-  end
+  puts receiver.content
+  receiver.hi()
+  #puts receiver.state
+
+#  receiver.callbacks.each do |cb|
+#    puts cb
+##    if cb[:name] == :show_text_with_positioning
+##      #puts cb[:args]
+##    end
+#  end
 
   #puts receiver.raw_content
+
   #puts page.text
 
   #receiver.sort_text()
