@@ -124,10 +124,13 @@ if ARGV.length >= 1
   receiver = TextReceiver.new
   #receiver = CustomReceiver.new
 
-  page.walk(receiver)
 
-  puts receiver.content
-  receiver.hi()
+  puts page.fonts
+
+  #page.walk(receiver)
+
+  #puts receiver.content
+  #receiver.hi()
   #puts receiver.state
 
 #  receiver.callbacks.each do |cb|
